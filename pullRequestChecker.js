@@ -23,7 +23,8 @@ class PullRequestChecker {
 
         let blockedCommits = 0;
         for (const { commit: { message }, sha, url } of commits) {
-            const isAutosquash = message.startsWith("fixup!") || message.startsWith("squash!");
+            const autosquashPrefixes = ["fixup!", "squash!", "drop!"];
+            const isAutosquash = autosquashPrefixes.some(prefix => message.startsWith(prefix));
 
             if (isAutosquash) {
                 error(`Commit ${sha} is an autosquash commit: ${url}`);
@@ -33,7 +34,7 @@ class PullRequestChecker {
         }
 
         if (blockedCommits) {
-            throw Error(`${blockedCommits} commit(s) need to be squashed`);
+            throw Error(`${blockedCommits} commit(s) need to be squashed or removed`);
         }
     }
 }
