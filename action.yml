@@ -1,9 +1,9 @@
-name: "Block Autosquash Commits"
-description: "Prevent merging pull requests that contain commit messages prefixed with fixup! or squash!"
-author: "xt0rted"
+name: "Block Autosquash and Drop! Commits"
+description: "Prevent merging pull requests that contain commit messages prefixed with fixup!, squash! or drop!"
+author: "skrobul"
 branding:
   icon: "alert-circle"
-  color: "Red"
+  color: "red"
 
 inputs:
   repo-token:
